@@ -1,0 +1,7 @@
+title: Example Article # Title of the generated site.
+filename: example-article # Name of the generated HTML file. (no need to include .html)
+type: article # 'download' to create a download page, 'article' to create an article.
+
+links: # Links appear on "Related Articles" in articles and "Download" section on download pages.
+  - [How gravity works, https://path/to/article]
+  - [How fast is light, https://path/to/article]

@@ -1,6 +1,0 @@
-title: Example Site 1 # Title of the generated site.
-filename: site1 # Name of the generated HTML file.
-
-download_links:
-  - [For Windows, https://path/to/file]
-  - [For Linux, https://path/to/file]

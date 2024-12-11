@@ -2,24 +2,31 @@ import os
 import yaml
 
 site_sources_dir = "site-sources" # Name of the directory in which site source files are placed.
-export_sites_to = "sites" # Name of the directory to place the exported sites.
 
 # To add tabs to a multi-line string
 def add_tabs(content, number_of_tabs_to_add):
     tabs = '\t' * number_of_tabs_to_add
     return '\n'.join([tabs + line for line in content.splitlines()])
 
-# Create export_sites_to folder if it doesn't exist.
-os.makedirs(export_sites_to, exist_ok=True)
+# Create download and articles folders.
+os.makedirs("download", exist_ok=True)
+os.makedirs("article", exist_ok=True)
 
-# Clear export_sites_to folder.
-print(f"Clearing {export_sites_to} folder")
-for filename in os.listdir(export_sites_to):
-    file_path = os.path.join(export_sites_to, filename)
+# Clear folders.
+print(f"Clearing 'download' folder")
+for filename in os.listdir("download"):
+    file_path = os.path.join("download", filename)
+    if os.path.isfile(file_path):
+        os.remove(file_path)
+print(f"Clearing 'download' folder")
+for filename in os.listdir("download"):
+    file_path = os.path.join("download", filename)
     if os.path.isfile(file_path):
         os.remove(file_path)
 
-print("Scanning 'sites' dir")
+
+
+print("Scanning 'site-sources' dir")
 for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
     dir_path = os.path.join(site_sources_dir, dir_name)
 
@@ -29,18 +36,38 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
 
     print(f"Creating html file for {dir_name}") # Creating html file
     
-    with open(os.path.join(export_sites_to, data["filename"] + ".html"), "w") as htmlfile:
+    # Determine the location to export.
+    if data["type"] == "download":
+        export_to = "download"
+    elif data["type"] == "article":
+        export_to = "article"
+    else:
+        print(f"Make sure 'type' attribute in metadata.yaml is properly configured.")
+        break
+
+    with open(os.path.join(export_to, data["filename"] + ".html"), "w") as htmlfile:
         htmlfile.write(
             f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
-\t<meta charset="UTF-8">
-\t<meta name="viewport" content="width=device-width, initial-scale=1.0">
-\t<link rel="stylesheet" href="../default-assets/styles.css">
-\t<link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji&display=swap" rel="stylesheet">
-\t<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-\t<title>{data["title"]}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../default-assets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>{data["title"]}</title>\n"""
+        )
+
+        # Add MathJax if the type is "article".
+        if data["type"] == "article":
+            htmlfile.write("""
+    <script type="text/javascript" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>\n"""
+            )
+
+        htmlfile.write("""
 </head>
 <body>
     <header class="sticky-header">
@@ -49,8 +76,7 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
             <button class="homepage-btn">Homepage</button>
         </a>
     </header>
-\t<div class="container">
-"""
+    <div class="container">\n"""
         )
 
         print("Pasting content") # Pasting content from content.html.
@@ -59,15 +85,22 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
             htmlfile.write(content)
             htmlfile.write("\n")
 
-        print("Creating downloads section")
+        print("Creating downloads/article section")
         htmlfile.write(f"\t\t<div class='downloads-section'>\n") # Downloads section.
-        for link in data["download_links"]: # Create download button for each link.
+        if data["type"] == "article": # Only if type is article.
+            htmlfile.write(f"""\t\t\t<h2 style="text-align: center;">Related Articles</h2>\n""")
+
+        for link in data["links"]: # Create button for each link.
             htmlfile.write(f"""
-\t\t\t<div class="item-div">
-\t\t\t\t<p>{link[0]}</p>
-\t\t\t\t<a href="{link[1]}" download><button class="download-btn">Download</button></a>
-\t\t\t</div>
-""")
+            <div class="item-div">
+                <p>{link[0]}</p>\n"""
+            )
+
+            if data["type"] == "download": # Create download button
+                htmlfile.write(f'\t\t\t\t<a href="{link[1]}" download><button class="download-btn">Download</button></a>\n')
+            if data["type"] == "article":
+                htmlfile.write(f'\t\t\t\t<a href="{link[1]}"><button class="download-btn">Read</button></a>\n')
+            htmlfile.write("\t\t\t</div>")
 
         print("Closing file")
         htmlfile.write("""

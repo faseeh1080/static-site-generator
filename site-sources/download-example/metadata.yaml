@@ -1,0 +1,7 @@
+title: Download Example # Title of the generated site.
+filename: download-example # Name of the generated HTML file. (no need to include .html)
+type: download # 'download' to create a download page, 'article' to create an article.
+
+links: # Links appear on "Related Articles" in articles and "Download" section on download pages.
+  - [For Windows, https://path/to/file]
+  - [For Linux, https://path/to/file]
