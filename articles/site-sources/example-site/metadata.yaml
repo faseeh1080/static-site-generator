@@ -1,6 +1,0 @@
-title: Example Site # Title of the generated site.
-filename: example # Name of the generated HTML file.
-
-related_articles:
-  - [Article 1, https://path/to/article]
-  - [Article 2, https://path/to/article]
