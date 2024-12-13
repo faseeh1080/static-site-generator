@@ -72,7 +72,7 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
 <body>
     <header class="sticky-header">
         <h1 class="site-logo">FaseehOfficial</h1>
-        <a href="https://faseeh-official.github.io" _target=blank>
+        <a href="https://faseeh-z.github.io" _target=blank>
             <button class="homepage-btn">Homepage</button>
         </a>
     </header>
