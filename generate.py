@@ -71,7 +71,7 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
 </head>
 <body>
     <header class="sticky-header">
-        <h1 class="site-logo">FaseehOfficial</h1>
+        <h1 class="site-logo">Faseeh-Z</h1>
         <a href="https://faseeh-z.github.io" _target=blank>
             <button class="homepage-btn">Homepage</button>
         </a>
@@ -139,3 +139,6 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
 </html>
 """
         )
+
+print("\nProcess completed.")
+input("Press any key to finish.")
