@@ -18,9 +18,9 @@ for filename in os.listdir("download"):
     file_path = os.path.join("download", filename)
     if os.path.isfile(file_path):
         os.remove(file_path)
-print(f"Clearing 'download' folder")
-for filename in os.listdir("download"):
-    file_path = os.path.join("download", filename)
+print(f"Clearing 'article' folder")
+for filename in os.listdir("article"):
+    file_path = os.path.join("article", filename)
     if os.path.isfile(file_path):
         os.remove(file_path)
 
