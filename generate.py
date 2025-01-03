@@ -135,6 +135,7 @@ for dir_name in os.listdir(site_sources_dir): # Loop through all sites folders.
             </section>
         </div>
     </div>
+    <script src="../default-assets/script.js"></script>
 </body>
 </html>
 """
