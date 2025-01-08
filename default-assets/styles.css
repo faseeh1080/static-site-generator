@@ -64,44 +64,23 @@ img {
 
 .homepage-btn {
   background-color: transparent;
-  color: #695aa6;
-  background-color: white;
-  border-radius: 999px;
-  padding: 10px 30px;
+  color: transparent;
+  padding: 0px 0px;
   margin: 0px;
   border: none;
-  border-radius: 50px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s;
-}
-  
-.homepage-btn:hover {
-  background-color: #ececec;
 }
 
-.homepage-btn:focus {
-  background-color: #d6d6d6;
+.homepage-btn:hover .home-icon {
+  filter: invert(40%) sepia(100%) saturate(200%) hue-rotate(90deg);
+  transition: filter 0.2s ease;
 }
 
-@media (max-width: 470px) {
-  .site-logo {
-    font-size: 23px;
-  }
-
-  .homepage-btn {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 370px) {
-  .site-logo {
-    font-size: 21px;
-  }
-
-  .homepage-btn {
-    font-size: 12px;
-  }
+.home-icon {
+  width: 46px;
+  height: 46px;
+  filter: invert(100%) brightness(100%); /* Makes the color white. */
+  transition: filter 0.2s ease;
 }
 
 .container {
