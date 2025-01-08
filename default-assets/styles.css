@@ -73,17 +73,15 @@ img {
   border-radius: 50px;
   font-size: 16px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.2s;
 }
   
 .homepage-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.453);
+  background-color: #ececec;
 }
 
 .homepage-btn:focus {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.453);
+  background-color: #d6d6d6;
 }
 
 @media (max-width: 470px) {
@@ -140,6 +138,7 @@ img {
 .download-btn {
   background-color: transparent;
   color: #695aa6;
+  background-color: transparent;
   border: 1px solid #695aa6;
   border-radius: 999px;
   width: 125px;
@@ -148,12 +147,12 @@ img {
   border-radius: 50px;
   font-size: 16px;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, border 0.3s ease;
+  transition: color 0.2s, background-color 0.2s;
 }
   
 .download-btn:hover {
-  box-shadow: 0 0 3px #8071bd;
-  border: 1px solid #8374bd;
+  color: white;
+  background-color: #695aa6;
 }
 
 .footer {
