@@ -39,7 +39,7 @@ img {
 
 .sticky-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   padding-left: 24px;
@@ -52,6 +52,14 @@ img {
   color: white;
   z-index: 1000;
   box-sizing: border-box;
+}
+
+.sticky-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1240px;
 }
 
 .site-logo {
